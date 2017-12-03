@@ -7,7 +7,7 @@
 
     <groupId>com.smoketurner.dropwizard</groupId>
     <artifactId>dropwizard-zipkin</artifactId>
-    <version>1.2.2-2-SNAPSHOT</version>
+    <version>1.2.2-2-DASHBASE-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>dropwizard-zipkin</name>
@@ -27,7 +27,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <file.encoding>UTF-8</file.encoding>
         <javadoc.doclint.none>-Xdoclint:none</javadoc.doclint.none>
-        <dropwizard.version>1.2.2</dropwizard.version>
+        <dropwizard.version>1.2.0</dropwizard.version>
         <brave.version>4.10.0</brave.version>
         <zipkin.reporter.version>2.1.4</zipkin.reporter.version>
     </properties>
@@ -53,23 +53,6 @@
         <url>https://github.com/smoketurner/dropwizard-zipkin</url>
         <tag>HEAD</tag>
     </scm>
-
-    <distributionManagement>
-        <site>
-            <id>dropwizard-zipkin</id>
-            <url>${project.version}</url>
-        </site>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 
     <ciManagement>
         <system>Travis CI</system>
@@ -513,6 +496,13 @@
                 </executions>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>1.2.1</version>
+            </extension>
+        </extensions>
     </build>
     <reporting>
         <plugins>
@@ -560,4 +550,14 @@
             </plugin>
         </plugins>
     </reporting>
+	<distributionManagement>
+	        <snapshotRepository>
+	                <id>repo.dashbase.io</id>
+	                <url>s3://repo.dashbase.io/snapshot</url>
+	        </snapshotRepository>
+	        <repository>
+	                <id>repo.dashbase.io</id>
+	                <url>s3://repo.dashbase.io/snapshot</url>
+	        </repository>
+	</distributionManagement>
 </project>
